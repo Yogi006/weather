@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+      body {
+    font-family: "Times New Roman", Times, serif;
+    background-color: #f2f2f2;
+  }
+
+  h1 {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    margin: 0 auto;
+    width: 50%;
+    font-size: 1.2em;
+  }
+
+  input[type="text"] {
+    font-size: 1.2em;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+  }
+
+  input[type="submit"] {
+    background-color: #2196f3;
+    color: #fff;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .weather-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightblue;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    margin: 50px auto;
+    width: 50%;
+    text-align: center;
+  }
+
+  label {
+  display: inline-block;
+  text=align: left;
+  }
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+  }
+    </style>
+
+    <title>Current Weather</title>
+  </head>
+  <body>
+    <h1>Current Weather</h1>
+    <form action="/" method="post">
+      <label for="city_name">City Name:
+      <input type="text" id="city_name" name="city_name" placeholder="Enter city name"></label>
+      <input type="submit" value="Submit">
+    </form>
+
+
+    {% if weather %}
+    <div class="weather-data">
+      <h2>{{ weather.city_name }}</h2>
+      <p>Temperature: {{ weather.temperature }}</p>
+      <p>Humidity: {{ weather.humidity }}</p>
+      <p>Pressure: {{ weather.pressure }}</p>
+      <p>Wind Speed: {{ weather.wind_speed }}</p>
+      <p>Description: {{ weather.description }}</p>
+      <img src="http://openweathermap.org/img/wn/{{ weather.icon }}@2x.png" alt="Weather Icon">
+    {% else %}
+      {% if error %}
+        <p>{{ error }}</p>
+      {% endif %}
+    {% endif %}
+  </div>
+  </body>
+</html>
